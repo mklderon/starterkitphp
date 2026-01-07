@@ -68,7 +68,7 @@ if (!function_exists('dump')) {
     {
         echo '<pre style="background: #2d2d2d; color: #dcdcdc; padding: 20px; border-radius: 4px; overflow-x: auto;">';
         foreach ($vars as $var) {
-            var_dump($var);
+            
             echo "\n\n";
         }
         echo '</pre>';
