@@ -1,0 +1,44 @@
+# public/.htaccess
+
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+
+  RewriteEngine On
+  RewriteBase /pulse-starter/public/
+
+  # ✅ IMPORTANTE: NO reescribir archivos JavaScript, CSS, imágenes, etc.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  
+  # ✅ NO reescribir archivos estáticos
+  RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+
+  RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# Configuración CORS (por entorno)
+<IfModule mod_headers.c>
+   # Solo para desarrollo
+   <If "%{HTTP_HOST} =~ /^(localhost|127\.0\.0\.1)/">
+       Header set Access-Control-Allow-Origin "*"
+   </If>
+
+   # Para producción (descomentar y configurar)
+   # <If "%{HTTP_HOST} == 'midominio.com'">
+   #     Header set Access-Control-Allow-Origin "https://midominio.com"
+   # </If>
+
+   Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+   Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# ✅ Configuración de tipos MIME
+<IfModule mod_mime.c>
+   AddType application/javascript .js .mjs
+   AddType text/css .css
+</IfModule>
+
+# ✅ Habilitar acceso a archivos de fuentes
+<FilesMatch ".(eot|ttf|otf|woff|woff2)">
+   Header set Access-Control-Allow-Origin "*"
+</FilesMatch>

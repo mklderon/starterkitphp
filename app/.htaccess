@@ -1,0 +1,26 @@
+# app/.htaccess
+# Permitir acceso a archivos JavaScript en app/src/
+
+<IfModule mod_rewrite.c>
+  RewriteEngine Off
+</IfModule>
+
+# Permitir acceso a archivos JS
+<FilesMatch "\.(js|mjs)$">
+  Order allow,deny
+  Allow from all
+  
+  # Configurar como módulos ES6
+  <IfModule mod_headers.c>
+    Header set Content-Type "application/javascript; charset=utf-8"
+  </IfModule>
+</FilesMatch>
+
+# Bloquear acceso a archivos PHP
+<FilesMatch "\.php$">
+  Order deny,allow
+  Deny from all
+</FilesMatch>
+
+# Bloquear listado de directorios (seguridad)
+Options -Indexes

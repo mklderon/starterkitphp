@@ -1,0 +1,37 @@
+# Logs
+logs/
+*.log
+
+# Database
+database/backup/
+database/seeds/
+
+# Uploads (solo carpetas, no archivos subidos)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Configuración local (si la tienes separada)
+# app/config/config.php
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# Node modules
+node_modules/
+
+# Composer
+vendor/
+
+# Environment
+.env
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github/instructions/snyk_rules.instructions.md
